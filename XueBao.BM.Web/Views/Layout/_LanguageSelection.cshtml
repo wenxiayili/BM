@@ -8,7 +8,7 @@
     <ul class="dropdown-menu">
         @foreach (var language in Model.Languages)
         {
-            if (language.Name != Model.CurrentLanguage.Name)
+            if (language.Name != Model.CurrentLanguage.Name && (language.DisplayName=="English" || language.DisplayName=="简体中文"))
             {
                 <li><a href="@(ApplicationPath)AbpLocalization/ChangeCulture?cultureName=@(language.Name)&returnUrl=@(Request.Url)"><i class="@language.Icon"></i> @language.DisplayName</a></li>
             }
