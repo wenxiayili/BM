@@ -20,6 +20,29 @@
     <text name="LogIn" value="登录" />
 
     <text name="LoginFailed" value="登录失败!" />
-    
+
+    <text name="NameSurname" value="姓氏" />
+    <text name="UserName" value="您的名字" />
+    <text name="Name" value="用户昵称" />
+    <text name="Surname" value="" />
+    <text name="EmailAddress" value="邮箱地址" />
+
+    <text name="IsActive" value="是否为活跃" />
+    <text name="Tenants" value="租户" />
+    <text name="SavedSuccessfully" value="保存成功" />
+    <text name="CreateNewTenant" value="新增租户" />
+    <text name="AdminEmailAddress" value="管理员邮箱地址" />
+    <text name="Save" value="保存" />
+    <text name="Cancel" value="取消" />
+    <text name="TenantName_Regex_Description" value="租客名称的正则表达式描述" />
+    <text name="DefaultPasswordIs" value="默认口令" />
+    <text name="CanBeEmptyToLoginAsHost" value="根用户可以为空" />
+    <text name="Register" value="注册" />
+    <text name="OrLoginWith" value="或者登录" />
+    <text name="WaitingForActivationMessage" value="等待激活消息" />
+    <text name="TenantSelection" value="租客选择" />
+    <text name="TenantSelection_Detail" value="租客选择细节" />
+    <text name="CreateNewUser" value="创建新用户" />
+    <text name="Logout" value="登出" />
   </texts>
 </localizationDictionary>
