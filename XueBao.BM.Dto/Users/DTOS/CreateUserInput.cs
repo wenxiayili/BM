@@ -1,9 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+
+
 using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
-namespace XueBao.BM.Users.Dto
+namespace XueBao.BM.Users.DTOS
 {
     [AutoMap(typeof(User))]
     public class CreateUserInput

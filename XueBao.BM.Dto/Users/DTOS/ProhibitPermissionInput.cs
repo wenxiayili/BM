@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace XueBao.BM.Users.Dto
+namespace XueBao.BM.Users.DTOS
 {
     public class ProhibitPermissionInput
     {

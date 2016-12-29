@@ -185,6 +185,10 @@
       <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
       <Name>XueBao.BM.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\XueBao.BM.Dto\XueBao.BM.Dto.csproj">
+      <Project>{23D75E11-AC5E-4313-A014-B0DB35DB4510}</Project>
+      <Name>XueBao.BM.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\XueBao.BM.EntityFramework\XueBao.BM.EntityFramework.csproj">
       <Project>{3979F157-DEB0-4878-AB1D-4CEF6B5A1300}</Project>
       <Name>XueBao.BM.EntityFramework</Name>
