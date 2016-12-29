@@ -7,12 +7,52 @@ namespace XueBao.BM.Users
 {
     public interface IUserAppService : IApplicationService
     {
+        /// <summary>
+        /// prohibit user's the permission
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         Task ProhibitPermission(ProhibitPermissionInput input);
 
+        /// <summary>
+        /// remove the user from role
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         Task RemoveFromRole(long userId, string roleName);
 
+        /// <summary>
+        /// get all users
+        /// </summary>
+        /// <returns></returns>
         Task<ListResultDto<UserListDto>> GetUsers();
 
+        /// <summary>
+        /// create user
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         Task CreateUser(CreateUserInput input);
+
+        /// <summary>
+        /// update user's password
+        /// </summary>
+        /// <returns></returns>
+        Task UpdateUserPassWord(UpdateUserInput input);
+
+        /// <summary>
+        /// delete user if id = input.UserId
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task DeleteUser(DeleteUserInput input);
+
+        /// <summary>
+        /// give permission for user
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task GivePermissions(GivePermissionInput input);
     }
 }

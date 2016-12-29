@@ -17,6 +17,10 @@ namespace XueBao.BM.Authorization
 
             var users = pages.CreateChildPermission(PermissionNames.Pages_Users, L("Users"));
 
+            //Page_Users页面下的 创建用户 的权限
+            var createNewUser = users.CreateChildPermission(PermissionNames.Pages_Users_CreateNewUser, L("CreateNewUser"));
+            
+
             //Host permissions
             var tenants = pages.CreateChildPermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }

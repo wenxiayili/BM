@@ -10,13 +10,20 @@ using XueBao.BM.Users.DTOS;
 
 namespace XueBao.BM.Users
 {
-    /* THIS IS JUST A SAMPLE. */
+    /// <summary>
+    /// 用户服务
+    /// </summary>
     [AbpAuthorize(PermissionNames.Pages_Users)]
     public class UserAppService : BMAppServiceBase, IUserAppService
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userRepository"></param>
+        /// <param name="permissionManager"></param>
         public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager)
         {
             
@@ -25,6 +32,7 @@ namespace XueBao.BM.Users
             
         }
 
+        
         public async Task ProhibitPermission(ProhibitPermissionInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -33,12 +41,16 @@ namespace XueBao.BM.Users
             await UserManager.ProhibitPermissionAsync(user, permission);
         }
 
-        //Example for primitive method parameters.
+        
         public async Task RemoveFromRole(long userId, string roleName)
         {
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
         }
 
+        /// <summary>
+        /// get all users
+        /// </summary>
+        /// <returns></returns>
         public async Task<ListResultDto<UserListDto>> GetUsers()
         {
            
@@ -49,6 +61,11 @@ namespace XueBao.BM.Users
                 );
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task CreateUser(CreateUserInput input)
         {
             var user = input.MapTo<User>();
@@ -58,6 +75,46 @@ namespace XueBao.BM.Users
             user.IsEmailConfirmed = true;
 
             CheckErrors(await UserManager.CreateAsync(user));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task UpdateUserPassWord(UpdateUserInput input)
+        {
+            var user = await UserManager.GetUserByIdAsync(input.Id);
+
+            user.Password = new PasswordHasher().HashPassword(input.Password);
+
+            CheckErrors(await UserManager.UpdateAsync(user));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task DeleteUser(DeleteUserInput input)
+        {
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+            CheckErrors(await UserManager.DeleteAsync(user));
+        }
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task GivePermissions(GivePermissionInput input)
+        {
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+
+            var permission =  _permissionManager.GetPermission(input.PerminssionName);
+
+            await UserManager.GrantPermissionAsync(user, permission);
         }
     }
 }

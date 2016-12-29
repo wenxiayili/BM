@@ -21,10 +21,10 @@
 
     <text name="LoginFailed" value="登录失败!" />
 
-    <text name="NameSurname" value="姓氏" />
-    <text name="UserName" value="您的名字" />
-    <text name="Name" value="用户昵称" />
-    <text name="Surname" value="" />
+    <text name="NameSurname" value="姓名" />
+    <text name="UserName" value="昵称" />
+    <text name="Name" value="名字" />
+    <text name="Surname" value="姓氏" />
     <text name="EmailAddress" value="邮箱地址" />
 
     <text name="IsActive" value="是否为活跃" />

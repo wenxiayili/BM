@@ -39,6 +39,7 @@ namespace XueBao.BM
 
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
+            //初始化权限
             Configuration.Authorization.Providers.Add<BMAuthorizationProvider>();
         }
 

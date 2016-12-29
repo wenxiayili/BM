@@ -1,9 +1,9 @@
-﻿using System.Data.Entity;
+﻿using Shouldly;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using XueBao.BM.Users;
-using Shouldly;
-using Xunit;
 using XueBao.BM.Users.DTOS;
+using Xunit;
 
 namespace XueBao.BM.Tests.Users
 {
@@ -33,7 +33,7 @@ namespace XueBao.BM.Tests.Users
             await _userAppService.CreateUser(
                 new CreateUserInput
                 {
-                    EmailAddress = "john@volosoft.com", 
+                    EmailAddress = "john@volosoft.com",
                     IsActive = true,
                     Name = "John",
                     Surname = "Nash",
@@ -47,5 +47,27 @@ namespace XueBao.BM.Tests.Users
                 johnNashUser.ShouldNotBeNull();
             });
         }
+
+        [Fact]
+        public async Task UpdateUser_Test()
+        {
+            //Act
+            await _userAppService.UpdateUserPassWord(
+
+                  new UpdateUserInput
+                  {
+                      Id = 2,
+                      Password = "1234"
+                  }
+                );
+
+            await UsingDbContextAsync(async context =>
+            {
+                var j = await context.Users.FirstOrDefaultAsync(u => u.Id == 2);
+                j.Password.ShouldBe("1234");
+            });
+        }
+
+     
     }
 }
