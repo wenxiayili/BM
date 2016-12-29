@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using XueBao.BM.Users;
-using XueBao.BM.Users.Dto;
 using Shouldly;
 using Xunit;
+using XueBao.BM.Users.DTOS;
 
 namespace XueBao.BM.Tests.Users
 {
@@ -33,7 +33,7 @@ namespace XueBao.BM.Tests.Users
             await _userAppService.CreateUser(
                 new CreateUserInput
                 {
-                    EmailAddress = "john@volosoft.com",
+                    EmailAddress = "john@volosoft.com", 
                     IsActive = true,
                     Name = "John",
                     Surname = "Nash",

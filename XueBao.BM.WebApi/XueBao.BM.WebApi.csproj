@@ -170,6 +170,10 @@
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>XueBao.BM.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XueBao.BM.Dto\XueBao.BM.Dto.csproj">
+      <Project>{23d75e11-ac5e-4313-a014-b0db35db4510}</Project>
+      <Name>XueBao.BM.Dto</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
