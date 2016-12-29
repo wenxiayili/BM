@@ -2,7 +2,7 @@ using System;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 
-namespace XueBao.BM.Users.DTOS
+namespace XueBao.BM.Users.Dto
 {
     [AutoMapFrom(typeof(User))]
     public class UserListDto : EntityDto<long>

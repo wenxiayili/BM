@@ -5,8 +5,8 @@ using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using XueBao.BM.Authorization;
+using XueBao.BM.Users.Dto;
 using Microsoft.AspNet.Identity;
-using XueBao.BM.Users.DTOS;
 
 namespace XueBao.BM.Users
 {
@@ -16,13 +16,11 @@ namespace XueBao.BM.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
-        
+
         public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager)
         {
-            
             _userRepository = userRepository;
             _permissionManager = permissionManager;
-            
         }
 
         public async Task ProhibitPermission(ProhibitPermissionInput input)
@@ -41,7 +39,6 @@ namespace XueBao.BM.Users
 
         public async Task<ListResultDto<UserListDto>> GetUsers()
         {
-           
             var users = await _userRepository.GetAllListAsync();
 
             return new ListResultDto<UserListDto>(

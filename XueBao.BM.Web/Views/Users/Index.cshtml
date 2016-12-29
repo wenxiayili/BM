@@ -1,8 +1,6 @@
 ﻿@using Abp.Authorization.Users
 @using Abp.Web.Mvc.Extensions
-        
-
-@model Abp.Application.Services.Dto.ListResultDto<XueBao.BM.Users.DTOS.UserListDto>
+@model Abp.Application.Services.Dto.ListResultDto<XueBao.BM.Users.Dto.UserListDto>
 @{
     ViewBag.ActiveMenu = "Users"; //The menu item will be active for this page.
 }
@@ -79,7 +77,7 @@
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="IsActive" value="true"  checked="checked"> @L("IsActive")
+                            <input type="checkbox" name="IsActive" value="true" value="true" checked="checked"> @L("IsActive")
                         </label>
                     </div>
 

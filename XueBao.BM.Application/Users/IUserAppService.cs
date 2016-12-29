@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using XueBao.BM.Users.DTOS;
+using XueBao.BM.Users.Dto;
 
 namespace XueBao.BM.Users
 {
