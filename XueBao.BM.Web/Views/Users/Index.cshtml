@@ -19,20 +19,26 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th><input name="CheckAll" type="checkbox" value=""></th>
                         <th>@L("UserName")</th>
                         <th>@L("FullName")</th>
                         <th>@L("EmailAddress")</th>
                         <th>@L("IsActive")</th>
+                        <th>@L("Edit")</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var user in Model.Items)
                     {
                         <tr>
+                            <td><input type="checkbox" value="2" name="CheckBox"/></td>
                             <td>@user.UserName</td>
                             <td>@user.FullName</td>
                             <td>@user.EmailAddress</td>
                             <td>@L(user.IsActive ? "Yes" : "No")</td>
+                            <td><a class="">@L("Delete")</a></td>
+                            
                         </tr>
                     }
                 </tbody>

@@ -28,5 +28,37 @@
         _$modal.on('shown.bs.modal', function () {
             _$modal.find('input:not([type=hidden]):first').focus();
         });
+
+        //set checkbox state
+        $('input[name="CheckAll"]').on('click', function () {
+            if ($('input[name="CheckAll"]').is(':checked')) {
+                $('.row').find('table').find('input[type="checkbox"]').each(function () {
+                    $(this).prop('checked', true);
+
+                });
+            }
+            else {
+                $('.row').find('table').find('input[type="checkbox"]').each(function () {
+                    $(this).prop('checked', false);
+
+                });
+            }
+        });
+
+        
+
+    
     });
 })();
+
+//以下的的代码是为了获取被选中的checkbox的value值
+var _$table = $('.row').find('table').find('input[type="checkbox"]:checked');
+var array = new Array();
+var index = 0;
+_$table.each(function () {
+    if ($(this).val() != "") {
+        array[index] = $(this).val();
+        index++;
+
+    }
+});

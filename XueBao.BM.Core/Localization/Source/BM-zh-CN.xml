@@ -44,5 +44,11 @@
     <text name="TenantSelection_Detail" value="租客选择细节" />
     <text name="CreateNewUser" value="创建新用户" />
     <text name="Logout" value="登出" />
+    <text name="Edit" value="操作"/>
+    <text name="Delete" value="删除"/>
+    <text name="Yes" value="是"/>
+    <text name="No" value="否"/>
+    <text name="FullName" value="姓名" />
+
   </texts>
 </localizationDictionary>
