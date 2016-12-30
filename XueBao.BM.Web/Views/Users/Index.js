@@ -1,6 +1,5 @@
-﻿(function() {
-    $(function() {
-
+﻿(function () {
+    $(function () {
         var _userService = abp.services.app.user;
         var _$modal = $('#UserCreateModal');
         var _$form = _$modal.find('form');
@@ -15,7 +14,7 @@
             }
 
             var user = _$form.serializeFormToObject(); //serializeFormToObject is defined in main.js
-            
+
             abp.ui.setBusy(_$modal);
             _userService.createUser(user).done(function () {
                 _$modal.modal('hide');
@@ -24,7 +23,7 @@
                 abp.ui.clearBusy(_$modal);
             });
         });
-        
+
         _$modal.on('shown.bs.modal', function () {
             _$modal.find('input:not([type=hidden]):first').focus();
         });
@@ -34,31 +33,40 @@
             if ($('input[name="CheckAll"]').is(':checked')) {
                 $('.row').find('table').find('input[type="checkbox"]').each(function () {
                     $(this).prop('checked', true);
-
                 });
             }
             else {
                 $('.row').find('table').find('input[type="checkbox"]').each(function () {
                     $(this).prop('checked', false);
-
                 });
             }
         });
 
-        
+        //get all checked input's vlue
+        getAllCheckedInputValue = function () {
+            
+            var _$table = $('.row').find('table').find('input[type="checkbox"]:checked');
+            var array = new Array();
+            var index = 0;
+            _$table.each(function () {
+                if ($(this).val() != "") {
+                    array[index] = $(this).val();
+                    index++;
+                }
+            });
+            return array;
+        }
 
-    
+        //delete user
+        _$form.find('.delete').click(function (e) {
+            e.preventDefault();
+            var userArray = getAllCheckedInputValue();
+            if (userArray >= 1) {
+                for (var i = 0; i < userArray.length; i++) {
+
+                }
+            }
+        });
+
     });
 })();
-
-//以下的的代码是为了获取被选中的checkbox的value值
-var _$table = $('.row').find('table').find('input[type="checkbox"]:checked');
-var array = new Array();
-var index = 0;
-_$table.each(function () {
-    if ($(this).val() != "") {
-        array[index] = $(this).val();
-        index++;
-
-    }
-});

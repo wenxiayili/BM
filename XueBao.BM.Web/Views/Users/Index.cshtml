@@ -15,6 +15,7 @@
     <h1>@L("Users")</h1>
     <div class="row">
         <div class="col-md-12">
+            <button  class="btn btn-primary pull-right delete"><i class="fa fa-remove"></i> @L("Delete")</button>
             <button data-toggle="modal" data-target="#UserCreateModal" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewUser")</button>
             <table class="table">
                 <thead>
@@ -37,7 +38,7 @@
                             <td>@user.FullName</td>
                             <td>@user.EmailAddress</td>
                             <td>@L(user.IsActive ? "Yes" : "No")</td>
-                            <td><a class="">@L("Delete")</a></td>
+                            <td><button class="btn btn-primary active" role="button">@L("Editor")</button></td>
                             
                         </tr>
                     }

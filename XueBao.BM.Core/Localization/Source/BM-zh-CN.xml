@@ -49,6 +49,6 @@
     <text name="Yes" value="是"/>
     <text name="No" value="否"/>
     <text name="FullName" value="姓名" />
-
+    <text name="Editor" value="编辑"/>
   </texts>
 </localizationDictionary>
