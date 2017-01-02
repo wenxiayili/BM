@@ -49,7 +49,7 @@
             var array = new Array();
             var index = 0;
             _$table.each(function () {
-                if ($(this).val() != "") {
+                if ($(this).val() !== "") {
                     array[index] = $(this).val();
                     index++;
                 }
@@ -58,13 +58,20 @@
         }
 
         //delete user
-        _$form.find('.delete').click(function (e) {
+        $('.delete').click(function (e) {
             e.preventDefault();
             var userArray = getAllCheckedInputValue();
-            if (userArray >= 1) {
-                for (var i = 0; i < userArray.length; i++) {
-
-                }
+            if (userArray > 1) {
+                _userService.batchDeleteUsersAsync(userArray)
+                .done(function () {
+                    location.reload(true); //reload page to see new user!
+                })
+            } else {
+                var userId = userArray[0];
+                _userService.deleteUser({ id: userId })
+                .done(function () {
+                    location.reload(true);
+                });
             }
         });
 

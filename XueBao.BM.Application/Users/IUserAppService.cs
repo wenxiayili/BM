@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using XueBao.BM.Users.DTOS;
+using System.Collections.Generic;
 
 namespace XueBao.BM.Users
 {
@@ -46,7 +47,7 @@ namespace XueBao.BM.Users
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task DeleteUser(DeleteUserInput input);
+        Task DeleteUser(EntityDto input);
 
         /// <summary>
         /// give permission for user
@@ -54,5 +55,12 @@ namespace XueBao.BM.Users
         /// <param name="input"></param>
         /// <returns></returns>
         Task GivePermissions(GivePermissionInput input);
+
+        /// <summary>
+        /// Batch delete User.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task BatchDeleteUsersAsync(IEnumerable<long> input);
     }
 }

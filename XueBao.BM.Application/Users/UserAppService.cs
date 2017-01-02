@@ -7,6 +7,7 @@ using Abp.Domain.Repositories;
 using XueBao.BM.Authorization;
 using Microsoft.AspNet.Identity;
 using XueBao.BM.Users.DTOS;
+using System.Linq;
 
 namespace XueBao.BM.Users
 {
@@ -84,7 +85,7 @@ namespace XueBao.BM.Users
         /// <returns></returns>
         public async Task UpdateUserPassWord(UpdateUserInput input)
         {
-            var user = await UserManager.GetUserByIdAsync(input.Id);
+            var user = await _userRepository.GetAsync(input.Id);
 
             user.Password = new PasswordHasher().HashPassword(input.Password);
 
@@ -96,10 +97,9 @@ namespace XueBao.BM.Users
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task DeleteUser(DeleteUserInput input)
+        public async Task DeleteUser(EntityDto input)
         {
-            var user = await UserManager.GetUserByIdAsync(input.UserId);
-            CheckErrors(await UserManager.DeleteAsync(user));
+            await _userRepository.DeleteAsync(input.Id);
         }
         
 
@@ -115,6 +115,16 @@ namespace XueBao.BM.Users
             var permission =  _permissionManager.GetPermission(input.PerminssionName);
 
             await UserManager.GrantPermissionAsync(user, permission);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task BatchDeleteUsersAsync(IEnumerable<long> input)
+        {
+            await _userRepository.DeleteAsync(s => input.Contains(s.Id));
         }
     }
 }
