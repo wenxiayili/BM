@@ -15,6 +15,9 @@
         public const string Pages_Users_CreateNewUser = "Pages.Users.CreateNewUser";
 
 
+        //test
+        public const string Pages_Users_DeleteUser = "Pages.Users.DeleteUser";
+
         #endregion
     }
 }

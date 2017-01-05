@@ -33,12 +33,12 @@
                     @foreach (var user in Model.Items)
                     {
                         <tr>
-                            <td><input type="checkbox" value="2" name="CheckBox"/></td>
+                            <td><input type="checkbox" value="@user.Id" name="CheckBox"/></td>
                             <td>@user.UserName</td>
                             <td>@user.FullName</td>
                             <td>@user.EmailAddress</td>
                             <td>@L(user.IsActive ? "Yes" : "No")</td>
-                            <td><button class="btn btn-primary active" role="button">@L("Editor")</button></td>
+                            <td><button name="@user.UserName" data-toggle="modal" data-target="#EditPermission" class="btn btn-primary active" role="button">@L("Editor")</button></td>
                             
                         </tr>
                     }
@@ -99,3 +99,59 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="EditPermission" tabindex="-1" role="dialog" aria-labelledby="EditPermissionModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form name="userCreateForm" role="form" novalidate class="form-validation">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span>@L("Edit")</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>@L("UserName")</label>
+                        <input class="form-control" type="text" name="UserName" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label>@L("PermissionList")</label>
+                        <ul class="list-inline">
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+                            <li>2323</li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@L("Cancel")</button>
+                    <button type="submit" class="btn btn-primary blue"><i class="fa fa-save"></i> <span>@L("Save")</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

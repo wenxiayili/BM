@@ -126,5 +126,33 @@ namespace XueBao.BM.Users
         {
             await _userRepository.DeleteAsync(s => input.Contains(s.Id));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task ResetPermission(ResetPermissionInput input)
+        {
+            //get user
+            var user = _userRepository.Get(input.id);
+
+            //reset user permission
+            await UserManager.ResetAllPermissionsAsync(user);
+
+            //get permission
+            IEnumerable<Permission> permission;
+
+            List<Permission> tt = new List<Permission>();
+            foreach (var item in input.PermissionName)
+            {
+                var _permission = _permissionManager.GetPermission(item);
+                tt.Add(_permission);
+            }
+      
+            permission = tt;
+
+            //granted Permission
+            await UserManager.SetGrantedPermissionsAsync(user,permission);
+            
+        }
     }
 }

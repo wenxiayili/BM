@@ -2,7 +2,8 @@
     $(function () {
         var _userService = abp.services.app.user;
         var _$modal = $('#UserCreateModal');
-        var _$form = _$modal.find('form');
+        var _$form = _$modal.find('form[name=userCreateForm]');
+        var _$table = $('div >table button'); //table中的button按钮
 
         _$form.validate();
 
@@ -27,6 +28,38 @@
         _$modal.on('shown.bs.modal', function () {
             _$modal.find('input:not([type=hidden]):first').focus();
         });
+
+
+       
+        
+
+
+        //edit user permission
+
+           //bind click event for button of _$table
+        _$table.on('click', function () {
+            getHtmlString();
+        });
+
+        var _$editModal = $('#EditPermission');
+        var _$editForm = _$editModal.find('form');
+
+        _$editForm.validate();
+        
+        _$editForm.find('button[type="submit"]').click(function (e) {
+            e.preventDefault();
+
+            if (!_$editForm.valid()) {
+                return;
+            }
+            
+            //get checked input value
+
+            abp.ui.setBusy(_$editModal);
+            
+            //call services mothod to save permission
+        });
+
 
         //set checkbox state
         $('input[name="CheckAll"]').on('click', function () {
@@ -75,5 +108,26 @@
             }
         });
 
+        //get granted permission and get html string of Permission
+        //
+        var getHtmlString = function () {
+            var grantedPermissionObject = abp.auth.grantedPermissions;
+            var allPermissionObject = abp.auth.allPermissions;
+
+            //building html string 
+            var strHtml = "";
+            for (permission in allPermissionObject)
+            {
+                strHtml = strHtml + '<li><input type="checkbox" value="' + permission + '"/>' + permission + '</li>';
+            }
+
+            _$editForm.find("ul").html(strHtml);
+
+            //granted checkbox
+            for(permission in grantedPermissionObject)
+            {
+                _$editForm.find('input[value ="' + permission + '"]').prop('checked', true);
+            }
+        }
     });
 })();

@@ -62,5 +62,12 @@ namespace XueBao.BM.Users
         /// <param name="input"></param>
         /// <returns></returns>
         Task BatchDeleteUsersAsync(IEnumerable<long> input);
+
+        /// <summary>
+        /// ÷ÿ÷√»®œﬁ
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task ResetPermission(ResetPermissionInput input);
     }
 }
