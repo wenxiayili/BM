@@ -8,6 +8,7 @@ using XueBao.BM.Authorization;
 using Microsoft.AspNet.Identity;
 using XueBao.BM.Users.DTOS;
 using System.Linq;
+using Abp.UI;
 
 namespace XueBao.BM.Users
 {
@@ -99,7 +100,18 @@ namespace XueBao.BM.Users
         /// <returns></returns>
         public async Task DeleteUser(EntityDto input)
         {
-            await _userRepository.DeleteAsync(input.Id);
+            //user do not delete His own
+            var userId = AbpSession.UserId;
+           
+            if( userId==input.Id)
+            {
+                throw new UserFriendlyException("你不能删除您自己或者删除不存在的用户");
+            }
+            else
+            {
+                await _userRepository.DeleteAsync(input.Id);
+
+            }
         }
         
 
@@ -124,6 +136,11 @@ namespace XueBao.BM.Users
         /// <returns></returns>
         public async Task BatchDeleteUsersAsync(IEnumerable<long> input)
         {
+            if(input.Contains((long)AbpSession.UserId))
+            {
+                throw new UserFriendlyException("您不能删除自己");
+
+            }
             await _userRepository.DeleteAsync(s => input.Contains(s.Id));
         }
         /// <summary>

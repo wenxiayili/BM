@@ -118,7 +118,10 @@
             var strHtml = "";
             for (permission in allPermissionObject)
             {
-                strHtml = strHtml + '<li><input type="checkbox" value="' + permission + '"/>' + permission + '</li>';
+                if (permission !== "Pages.Tenants") {
+                    strHtml = strHtml + '<li><input type="checkbox" value="' + permission + '"/>' + permission + '</li>';
+                }
+
             }
 
             _$editForm.find("ul").html(strHtml);
@@ -126,7 +129,9 @@
             //granted checkbox
             for(permission in grantedPermissionObject)
             {
-                _$editForm.find('input[value ="' + permission + '"]').prop('checked', true);
+                
+                    _$editForm.find('input[value ="' + permission + '"]').prop('checked', true);
+
             }
         }
     });
