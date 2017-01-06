@@ -29,14 +29,9 @@
             _$modal.find('input:not([type=hidden]):first').focus();
         });
 
-
-       
-        
-
-
         //edit user permission
 
-           //bind click event for button of _$table
+        //bind click event for button of _$table
         _$table.on('click', function () {
             getHtmlString();
         });
@@ -45,21 +40,20 @@
         var _$editForm = _$editModal.find('form');
 
         _$editForm.validate();
-        
+
         _$editForm.find('button[type="submit"]').click(function (e) {
             e.preventDefault();
 
             if (!_$editForm.valid()) {
                 return;
             }
-            
+
             //get checked input value
 
             abp.ui.setBusy(_$editModal);
-            
+
             //call services mothod to save permission
         });
-
 
         //set checkbox state
         $('input[name="CheckAll"]').on('click', function () {
@@ -77,7 +71,6 @@
 
         //get all checked input's vlue
         getAllCheckedInputValue = function () {
-            
             var _$table = $('.row').find('table').find('input[type="checkbox"]:checked');
             var array = new Array();
             var index = 0;
@@ -111,27 +104,22 @@
         //get granted permission and get html string of Permission
         //
         var getHtmlString = function () {
-            var grantedPermissionObject = abp.auth.grantedPermissions;
-            var allPermissionObject = abp.auth.allPermissions;
+            var grantedPermissionObject = abp.auth.grantedPermissions; //get granted permissions 
+            var allPermissionObject = abp.auth.allPermissions;         //get all permissions
 
-            //building html string 
+            //building html string
             var strHtml = "";
-            for (permission in allPermissionObject)
-            {
+            for (permission in allPermissionObject) {
                 if (permission !== "Pages.Tenants") {
                     strHtml = strHtml + '<li><input type="checkbox" value="' + permission + '"/>' + permission + '</li>';
                 }
-
             }
 
             _$editForm.find("ul").html(strHtml);
 
             //granted checkbox
-            for(permission in grantedPermissionObject)
-            {
-                
-                    _$editForm.find('input[value ="' + permission + '"]').prop('checked', true);
-
+            for (permission in grantedPermissionObject) {
+                _$editForm.find('input[value ="' + permission + '"]').prop('checked', true);
             }
         }
     });
