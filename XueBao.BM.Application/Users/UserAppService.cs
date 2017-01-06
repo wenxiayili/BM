@@ -102,13 +102,14 @@ namespace XueBao.BM.Users
         {
             //user do not delete His own
             var userId = AbpSession.UserId;
-           
-            if( userId==input.Id)
+            var user = _userRepository.Get(input.Id);
+            if( userId==input.Id || user==null)
             {
                 throw new UserFriendlyException("你不能删除您自己或者删除不存在的用户");
             }
             else
             {
+                
                 await _userRepository.DeleteAsync(input.Id);
 
             }
