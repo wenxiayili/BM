@@ -89,14 +89,24 @@
             var userArray = getAllCheckedInputValue();
             if (userArray > 1) {
                 _userService.batchDeleteUsersAsync(userArray)
-                .done(function () {
-                    location.reload(true); //reload page to see new user!
+                .done(function (data) {
+                    if (data.success) {
+                        location.reload(true); //reload page to see new user!
+
+                    } else {
+                        abp.message.warn('您不能删除自己或者不存在的数据', '请注意');
+                    }
                 })
             } else {
                 var userId = userArray[0];
                 _userService.deleteUser({ id: userId })
-                .done(function () {
-                    location.reload(true);
+                .done(function (data) {
+                    if (data.success) {
+                        location.reload(true);
+
+                    } else {
+                        abp.message.warn(data.message, '请注意');
+                    }
                 });
             }
         });

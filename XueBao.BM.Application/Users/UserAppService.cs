@@ -1,14 +1,14 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
-using XueBao.BM.Authorization;
-using Microsoft.AspNet.Identity;
-using XueBao.BM.Users.DTOS;
-using System.Linq;
 using Abp.UI;
+using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using XueBao.BM.Authorization;
+using XueBao.BM.Users.DTOS;
 
 namespace XueBao.BM.Users
 {
@@ -20,21 +20,18 @@ namespace XueBao.BM.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="userRepository"></param>
         /// <param name="permissionManager"></param>
         public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager)
         {
-            
             _userRepository = userRepository;
             _permissionManager = permissionManager;
-            
         }
 
-        
         public async Task ProhibitPermission(ProhibitPermissionInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -43,7 +40,6 @@ namespace XueBao.BM.Users
             await UserManager.ProhibitPermissionAsync(user, permission);
         }
 
-        
         public async Task RemoveFromRole(long userId, string roleName)
         {
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
@@ -55,7 +51,6 @@ namespace XueBao.BM.Users
         /// <returns></returns>
         public async Task<ListResultDto<UserListDto>> GetUsers()
         {
-           
             var users = await _userRepository.GetAllListAsync();
 
             return new ListResultDto<UserListDto>(
@@ -64,7 +59,7 @@ namespace XueBao.BM.Users
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -80,7 +75,7 @@ namespace XueBao.BM.Users
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -94,7 +89,7 @@ namespace XueBao.BM.Users
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -103,21 +98,19 @@ namespace XueBao.BM.Users
             //user do not delete His own
             var userId = AbpSession.UserId;
             var user = _userRepository.Get(input.Id);
-            if( userId==input.Id || user==null)
+            if (userId == input.Id || user == null)
             {
-                throw new UserFriendlyException("你不能删除您自己或者删除不存在的用户");
+                //这里不应该有UI层代码
+                throw new UserFriendlyException("您不能删除自己");
             }
             else
             {
-                
                 await _userRepository.DeleteAsync(input.Id);
-
             }
         }
-        
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -125,27 +118,38 @@ namespace XueBao.BM.Users
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
 
-            var permission =  _permissionManager.GetPermission(input.PerminssionName);
+            var permission = _permissionManager.GetPermission(input.PerminssionName);
 
             await UserManager.GrantPermissionAsync(user, permission);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         public async Task BatchDeleteUsersAsync(IEnumerable<long> input)
         {
-            if(input.Contains((long)AbpSession.UserId))
+            if (input.Contains((long)AbpSession.UserId))
             {
-                throw new UserFriendlyException("您不能删除自己");
-
+                throw new UserFriendlyException("you can not delete yourself");
             }
-            await _userRepository.DeleteAsync(s => input.Contains(s.Id));
+
+            foreach (var item in input)
+            {
+                var user = await UserManager.GetUserByIdAsync(item);
+                continue;
+            }
+
+            await _userRepository.DeleteAsync(
+                (s) =>
+
+                   input.Contains(s.Id)
+           );
         }
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public async Task ResetPermission(ResetPermissionInput input)
@@ -165,12 +169,11 @@ namespace XueBao.BM.Users
                 var _permission = _permissionManager.GetPermission(item);
                 tt.Add(_permission);
             }
-      
+
             permission = tt;
 
             //granted Permission
-            await UserManager.SetGrantedPermissionsAsync(user,permission);
-            
+            await UserManager.SetGrantedPermissionsAsync(user, permission);
         }
     }
 }
