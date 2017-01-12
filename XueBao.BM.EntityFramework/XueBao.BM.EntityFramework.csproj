@@ -192,6 +192,14 @@
     <Compile Include="Migrations\201612051741057_Upgrade_To_Abp_Zero_v1_1.Designer.cs">
       <DependentUpon>201612051741057_Upgrade_To_Abp_Zero_v1_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701120841245_AddNewsAndNewCategories.cs" />
+    <Compile Include="Migrations\201701120841245_AddNewsAndNewCategories.Designer.cs">
+      <DependentUpon>201701120841245_AddNewsAndNewCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701120905546_AddNewsContents.cs" />
+    <Compile Include="Migrations\201701120905546_AddNewsContents.Designer.cs">
+      <DependentUpon>201701120905546_AddNewsContents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="BMDataModule.cs" />
@@ -212,6 +220,10 @@
     <ProjectReference Include="..\XueBao.BM.Core\XueBao.BM.Core.csproj">
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>XueBao.BM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XueBao.BM.Model\XueBao.BM.Model.csproj">
+      <Project>{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}</Project>
+      <Name>XueBao.BM.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612051741057_Upgrade_To_Abp_Zero_v1_1.resx">
       <DependentUpon>201612051741057_Upgrade_To_Abp_Zero_v1_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701120841245_AddNewsAndNewCategories.resx">
+      <DependentUpon>201701120841245_AddNewsAndNewCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701120905546_AddNewsContents.resx">
+      <DependentUpon>201701120905546_AddNewsContents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
