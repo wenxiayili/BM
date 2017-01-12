@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XueBao.BM.Migrator", "Tools
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XueBao.BM.Dto", "XueBao.BM.Dto\XueBao.BM.Dto.csproj", "{23D75E11-AC5E-4313-A014-B0DB35DB4510}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XueBao.BM.Model", "XueBao.BM.Model\XueBao.BM.Model.csproj", "{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{23D75E11-AC5E-4313-A014-B0DB35DB4510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23D75E11-AC5E-4313-A014-B0DB35DB4510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23D75E11-AC5E-4313-A014-B0DB35DB4510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F48BFA7F-F51A-4B17-BD1A-BC7C237447DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
